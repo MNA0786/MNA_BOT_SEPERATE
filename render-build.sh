@@ -9,11 +9,16 @@ echo "Starting build process..."
 composer install --no-dev --optimize-autoloader
 
 # Create necessary directories
-mkdir -p data backups
+mkdir -p data backups logs scans
+
+# Create log files if they don't exist
+touch bot_activity.log
+touch logs/error.log
 
 # Set permissions
-chmod -R 777 data backups
+chmod -R 777 data backups logs scans
 chmod 666 bot_activity.log
+chmod 666 logs/error.log
 
 # Create initial files if they don't exist
 if [ ! -f data/movies.csv ]; then
@@ -35,5 +40,25 @@ fi
 if [ ! -f data/user_settings.json ]; then
     echo '{"user_settings":[]}' > data/user_settings.json
 fi
+
+if [ ! -f data/tasks.json ]; then
+    echo '{"pending_tasks":[],"completed_tasks":[],"failed_tasks":[]}' > data/tasks.json
+fi
+
+# Create scan offset files
+php -r "
+\$channels = [
+    '-1003181705395' => 245,
+    '-1003614546520' => 107,
+    '-1002831605258' => 61,
+    '-1002964109368' => 0,
+    '-1003251791991' => 333,
+    '-1002337293281' => 333,
+    '-1003083386043' => 0,
+];
+foreach (\$channels as \$id => \$last) {
+    file_put_contents('scans/scan_offset_' . \$id . '.txt', \$last);
+}
+"
 
 echo "Build completed successfully!"
