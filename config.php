@@ -1,5 +1,28 @@
 <?php
 // ==============================
+// CONFIGURATION WITH RENDER DETECTION
+// ==============================
+
+// Detect Render.com environment
+if (isset($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'onrender.com') !== false) {
+    define('ON_RENDER', true);
+} else {
+    define('ON_RENDER', false);
+}
+
+// Load .env file if exists
+if (file_exists(__DIR__ . '/.env')) {
+    $lines = file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos($line, '=') !== false && strpos($line, '#') !== 0) {
+            list($key, $value) = explode('=', $line, 2);
+            $_ENV[$key] = $value;
+            putenv("$key=$value");
+        }
+    }
+}
+
+// ==============================
 // CONFIGURATION WITH ENV SUPPORT
 // ==============================
 
