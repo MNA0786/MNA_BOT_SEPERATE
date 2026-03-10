@@ -1,0 +1,3 @@
+# SSH into Render and create log file
+touch /var/www/html/api_debug.log
+chmod 666 /var/www/html/api_debug.log
