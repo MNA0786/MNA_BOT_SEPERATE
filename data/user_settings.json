@@ -1,0 +1,140 @@
+{
+    "user_settings": {
+        "1080317415": {
+            "language": "hindi",
+            "theme": "dark",
+            "auto_delete": true,
+            "delete_time": 300,
+            "protected_content": true,
+            "notifications": true,
+            "forward_header": "auto",
+            "show_channel_name": true,
+            "default_quality": "any",
+            "default_language": "hindi",
+            "search_history": true,
+            "save_favorites": true,
+            "favorite_movies": [
+                "Zebra 2024",
+                "Andhadhun (2018)",
+                "Narivetta 2025"
+            ],
+            "blocked_movies": [],
+            "preferred_channels": [
+                "main",
+                "theater"
+            ],
+            "last_updated": "2026-03-09 10:15:30"
+        },
+        "987654321": {
+            "language": "english",
+            "theme": "light",
+            "auto_delete": false,
+            "delete_time": 600,
+            "protected_content": true,
+            "notifications": true,
+            "forward_header": "always",
+            "show_channel_name": true,
+            "default_quality": "1080p",
+            "default_language": "english",
+            "search_history": true,
+            "save_favorites": false,
+            "favorite_movies": [],
+            "blocked_movies": [
+                "low quality prints"
+            ],
+            "preferred_channels": [
+                "main",
+                "backup"
+            ],
+            "last_updated": "2026-03-08 15:20:45"
+        },
+        "876543210": {
+            "language": "hindi",
+            "theme": "dark",
+            "auto_delete": true,
+            "delete_time": 120,
+            "protected_content": false,
+            "notifications": false,
+            "forward_header": "never",
+            "show_channel_name": false,
+            "default_quality": "720p",
+            "default_language": "hindi",
+            "search_history": false,
+            "save_favorites": true,
+            "favorite_movies": [
+                "Pushpa",
+                "KGF",
+                "Animal"
+            ],
+            "blocked_movies": [],
+            "preferred_channels": [
+                "theater",
+                "serial"
+            ],
+            "last_updated": "2026-03-07 09:30:10"
+        },
+        "765432109": {
+            "language": "hindi",
+            "theme": "dark",
+            "auto_delete": true,
+            "delete_time": 300,
+            "protected_content": true,
+            "notifications": true,
+            "forward_header": "auto",
+            "show_channel_name": true,
+            "default_quality": "any",
+            "default_language": "hindi",
+            "search_history": true,
+            "save_favorites": false,
+            "favorite_movies": [],
+            "blocked_movies": [
+                "camrip",
+                "hdcam"
+            ],
+            "preferred_channels": [
+                "main",
+                "theater"
+            ],
+            "last_updated": "2026-03-06 18:45:20"
+        },
+        "654321098": {
+            "language": "english",
+            "theme": "light",
+            "auto_delete": false,
+            "delete_time": 300,
+            "protected_content": true,
+            "notifications": true,
+            "forward_header": "auto",
+            "show_channel_name": true,
+            "default_quality": "1080p",
+            "default_language": "english",
+            "search_history": true,
+            "save_favorites": true,
+            "favorite_movies": [
+                "Avengers",
+                "Inception",
+                "Interstellar"
+            ],
+            "blocked_movies": [],
+            "preferred_channels": [
+                "main"
+            ],
+            "last_updated": "2026-03-05 12:10:35"
+        }
+    },
+    "default_settings": {
+        "language": "hindi",
+        "theme": "dark",
+        "auto_delete": true,
+        "delete_time": 300,
+        "protected_content": true,
+        "notifications": true,
+        "forward_header": "auto",
+        "show_channel_name": true,
+        "default_quality": "any",
+        "default_language": "hindi",
+        "search_history": true,
+        "save_favorites": false
+    },
+    "last_updated": "2026-03-09 12:40:15"
+}

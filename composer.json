@@ -1,0 +1,56 @@
+{
+    "name": "entertainment-tadka/bot",
+    "description": "Telegram Movie Bot with Multi-Channel Support",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-fileinfo": "*",
+        "ext-zip": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Entertainment Tadka",
+            "email": "admin@entertainmenttadka.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "config.php",
+            "database.php",
+            "telegram.php",
+            "channels.php",
+            "users.php",
+            "movies.php",
+            "pagination.php",
+            "typing_eta.php",
+            "file_delete.php",
+            "settings.php",
+            "bulk_send.php",
+            "auto_scan.php",
+            "callback_handler.php",
+            "command_handler.php",
+            "admin.php",
+            "backup.php",
+            "utils.php"
+        ]
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "chmod -R 777 data/",
+            "chmod -R 777 backups/"
+        ],
+        "test": "phpunit tests/"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

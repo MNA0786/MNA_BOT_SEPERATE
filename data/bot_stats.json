@@ -1,0 +1,144 @@
+{
+    "total_movies": 245,
+    "total_users": 1250,
+    "total_searches": 15420,
+    "total_downloads": 8930,
+    "successful_searches": 12750,
+    "failed_searches": 2670,
+    "daily_activity": {
+        "2026-03-09": {
+            "searches": 450,
+            "downloads": 230,
+            "users": 180
+        },
+        "2026-03-08": {
+            "searches": 520,
+            "downloads": 310,
+            "users": 210
+        },
+        "2026-03-07": {
+            "searches": 480,
+            "downloads": 290,
+            "users": 195
+        },
+        "2026-03-06": {
+            "searches": 610,
+            "downloads": 350,
+            "users": 240
+        },
+        "2026-03-05": {
+            "searches": 590,
+            "downloads": 330,
+            "users": 225
+        },
+        "2026-03-04": {
+            "searches": 430,
+            "downloads": 210,
+            "users": 165
+        },
+        "2026-03-03": {
+            "searches": 570,
+            "downloads": 300,
+            "users": 205
+        },
+        "2026-03-02": {
+            "searches": 620,
+            "downloads": 380,
+            "users": 255
+        },
+        "2026-03-01": {
+            "searches": 710,
+            "downloads": 420,
+            "users": 290
+        },
+        "2026-02-28": {
+            "searches": 690,
+            "downloads": 400,
+            "users": 275
+        },
+        "2026-02-27": {
+            "searches": 540,
+            "downloads": 310,
+            "users": 215
+        },
+        "2026-02-26": {
+            "searches": 480,
+            "downloads": 260,
+            "users": 185
+        }
+    },
+    "channel_stats": {
+        "-1003181705395": {
+            "name": "Main Channel",
+            "movies": 85,
+            "last_scan": "2026-03-09 06:00:00"
+        },
+        "-1003614546520": {
+            "name": "Serial Channel",
+            "movies": 70,
+            "last_scan": "2026-03-09 06:00:00"
+        },
+        "-1002831605258": {
+            "name": "Theater Channel",
+            "movies": 42,
+            "last_scan": "2026-03-09 06:00:00"
+        },
+        "-1002964109368": {
+            "name": "Backup Channel",
+            "movies": 0,
+            "last_scan": "2026-03-09 06:00:00"
+        },
+        "-1003251791991": {
+            "name": "Private Channel 1",
+            "movies": 38,
+            "last_scan": "2026-03-09 06:00:00"
+        },
+        "-1002337293281": {
+            "name": "Private Channel 2",
+            "movies": 10,
+            "last_scan": "2026-03-09 06:00:00"
+        }
+    },
+    "top_movies": [
+        {
+            "name": "Zebra 2024",
+            "searches": 1250,
+            "downloads": 890
+        },
+        {
+            "name": "Andhadhun (2018)",
+            "searches": 980,
+            "downloads": 760
+        },
+        {
+            "name": "Show Time 2025",
+            "searches": 870,
+            "downloads": 650
+        },
+        {
+            "name": "Narivetta 2025",
+            "searches": 720,
+            "downloads": 540
+        },
+        {
+            "name": "Fear 2024",
+            "searches": 680,
+            "downloads": 510
+        }
+    ],
+    "top_users": [
+        1080317415,
+        987654321,
+        876543210
+    ],
+    "system_info": {
+        "php_version": "8.1.27",
+        "memory_limit": "256M",
+        "upload_max_filesize": "50M",
+        "last_cron": "2026-03-09 06:00:00",
+        "uptime": "15 days 4 hours",
+        "disk_free": "2.5 GB",
+        "disk_total": "10 GB"
+    },
+    "last_updated": "2026-03-09 12:30:45"
+}

@@ -1,0 +1,60 @@
+# ==============================
+# DOCKER COMPOSE CONFIGURATION
+# ==============================
+
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: entertainment-tadka-bot
+    ports:
+      - "8080:80"
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - ADMIN_ID=1080317415
+      - APP_ENV=production
+      - TZ=Asia/Kolkata
+    volumes:
+      - ./data:/var/www/html/data
+      - ./backups:/var/www/html/backups
+      - ./bot_activity.log:/var/www/html/bot_activity.log
+    restart: unless-stopped
+    networks:
+      - bot-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/ping.php"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: MySQL for future enhancements
+  # db:
+  #   image: mysql:8.0
+  #   container_name: bot-mysql
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  #     - MYSQL_DATABASE=bot_db
+  #     - MYSQL_USER=bot_user
+  #     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  #   volumes:
+  #     - mysql-data:/var/lib/mysql
+  #   networks:
+  #     - bot-network
+  #   restart: unless-stopped
+
+  # Optional: Redis for caching
+  # redis:
+  #   image: redis:alpine
+  #   container_name: bot-redis
+  #   networks:
+  #     - bot-network
+  #   restart: unless-stopped
+
+networks:
+  bot-network:
+    driver: bridge
+
+volumes:
+  mysql-data:

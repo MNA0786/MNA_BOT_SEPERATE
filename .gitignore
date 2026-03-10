@@ -1,0 +1,21 @@
+# Scan offset files
+/scans/scan_offset_*.txt
+!scans/scan_offset_initializer.php
+
+# Data files
+/data/*.csv
+/data/*.json
+!/data/.gitkeep
+
+# Logs
+*.log
+/logs/*.log
+!/logs/.gitkeep
+
+# Backups
+/backups/*
+!/backups/.gitkeep
+
+# Environment
+.env
+.env.local

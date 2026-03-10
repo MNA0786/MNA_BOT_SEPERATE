@@ -1,0 +1,68 @@
+# ==============================
+# RENDER.COM CONFIGURATION
+# ==============================
+
+services:
+  - type: web
+    name: entertainment-tadka-bot
+    runtime: php
+    repo: https://github.com/yourusername/entertainment-tadka-bot
+    branch: main
+    plan: free
+    region: singapore
+    buildCommand: |
+      chmod +x render-build.sh
+      ./render-build.sh
+    startCommand: apache2-foreground
+    healthCheckPath: /ping.php
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+        value: your_bot_token_here
+      - key: ADMIN_ID
+        value: 1080317415
+      - key: APP_ENV
+        value: production
+      - key: PHP_MEMORY_LIMIT
+        value: 256M
+      - key: PHP_MAX_EXECUTION_TIME
+        value: 300
+    disk:
+      name: data
+      mountPath: /var/www/html/data
+      sizeGB: 1
+    autoDeploy: true
+    schedule: "0 3 * * *"  # Daily backup at 3 AM
+    cron:
+      - command: curl -s https://your-bot.onrender.com/cron.php?task=backup
+        schedule: "0 3 * * *"
+      - command: curl -s https://your-bot.onrender.com/cron.php?task=scan
+        schedule: "0 */6 * * *"
+      - command: curl -s https://your-bot.onrender.com/cron.php?task=timers
+        schedule: "* * * * *"
+
+# Optional: Background worker for heavy tasks
+  - type: worker
+    name: entertainment-tadka-worker
+    runtime: php
+    repo: https://github.com/yourusername/entertainment-tadka-bot
+    branch: main
+    plan: free
+    region: singapore
+    buildCommand: |
+      chmod +x render-build.sh
+      ./render-build.sh
+    startCommand: php worker.php
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_ID
+        value: 1080317415
+      - key: APP_ENV
+        value: production
+      - key: WORKER_MODE
+        value: "true"
+    disk:
+      name: data
+      mountPath: /var/www/html/data
+      sizeGB: 1
