@@ -5,6 +5,7 @@
 
 require_once 'config.php';
 require_once 'telegram.php';
+require_once 'utils.php'; // Make sure utils.php is loaded first
 
 // Store active progress messages
 $active_progress = [];
@@ -55,7 +56,7 @@ function update_progress($chat_id, $progress_id, $current, $total, $status_text 
     $percent = $total > 0 ? round(($current / $total) * 100) : 0;
     $progress_bar = get_progress_bar($percent, 15);
     
-    // Format times
+    // Format times - USE FUNCTION FROM UTILS.PHP
     $eta_formatted = format_time_eta($eta_seconds);
     $elapsed_formatted = format_time_eta($elapsed);
     
@@ -98,14 +99,8 @@ function get_progress_bar($percent, $length = 10) {
     return "[" . str_repeat("█", $filled) . str_repeat("░", $empty) . "]";
 }
 
-function format_time_eta($seconds) {
-    if ($seconds < 60) {
-        return $seconds . "s";
-    }
-    $mins = floor($seconds / 60);
-    $secs = $seconds % 60;
-    return $mins . ":" . str_pad($secs, 2, "0", STR_PAD_LEFT);
-}
+// ===== REMOVED: function format_time_eta($seconds) { ... } =====
+// Yeh function utils.php mein already hai, isliye yahan se hataya
 
 // ==============================
 // ENHANCED SEND FUNCTIONS WITH ETA
