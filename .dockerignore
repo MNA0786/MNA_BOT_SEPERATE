@@ -1,0 +1,42 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Environment
+.env
+.env.local
+.env.example
+
+# Data directories (will be mounted as volumes)
+data/
+backups/
+logs/
+scans/
+
+# Logs
+*.log
+bot_activity.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Render
+render.yaml
+render-build.sh
+
+# Tests
+tests/
+phpunit.xml
