@@ -6,6 +6,7 @@
 require_once 'config.php';
 require_once 'database.php';
 require_once 'telegram.php';
+require_once 'utils.php'; // Make sure utils is loaded
 
 function manual_backup($chat_id, $user_id) {
     if ($user_id != ADMIN_ID) {
