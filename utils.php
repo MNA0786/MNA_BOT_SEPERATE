@@ -5,6 +5,7 @@
 
 require_once 'config.php';
 
+// ✅ This function should exist ONLY here
 function format_time_eta($seconds) {
     if ($seconds < 60) {
         return $seconds . 's';
