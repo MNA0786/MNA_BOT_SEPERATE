@@ -5,6 +5,7 @@
 
 require_once 'config.php';
 require_once 'telegram.php';
+require_once 'utils.php'; // Make sure utils is loaded
 
 $delete_timers = [];
 
@@ -89,10 +90,10 @@ function get_progress_bar_timer($percent, $length = 10) {
     
     // Use different colors for timer
     $bar = "⏳";
-    if ($percent < 25) $bar = "🟢"; // Green for just started
-    elseif ($percent < 50) $bar = "🟡"; // Yellow for half
-    elseif ($percent < 75) $bar = "🟠"; // Orange for almost
-    else $bar = "🔴"; // Red for soon
+    if ($percent < 25) $bar = "🟢";
+    elseif ($percent < 50) $bar = "🟡";
+    elseif ($percent < 75) $bar = "🟠";
+    else $bar = "🔴";
     
     return $bar . " [" . str_repeat("█", $filled) . str_repeat("░", $empty) . "]";
 }
