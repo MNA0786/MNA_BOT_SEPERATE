@@ -9,6 +9,7 @@ require_once 'telegram.php';
 require_once 'users.php';
 require_once 'backup.php';
 require_once 'auto_scan.php';
+require_once 'utils.php'; // Make sure utils is loaded for format_bytes
 
 function is_admin($user_id) {
     return ($user_id == ADMIN_ID);
@@ -36,7 +37,7 @@ function admin_stats($chat_id, $user_id) {
     
     $msg .= "🎬 <b>Movies:</b>\n";
     $msg .= "• Total: " . ($stats['total_movies'] ?? 0) . "\n";
-    $msg .= "• CSV Size: " . format_bytes(filesize(CSV_FILE)) . "\n\n";
+    $msg .= "• CSV Size: " . format_bytes(filesize(CSV_FILE)) . "\n\n"; // Uses utils.php function
     
     $msg .= "👥 <b>Users:</b>\n";
     $msg .= "• Total: {$total_users}\n";
@@ -53,7 +54,7 @@ function admin_stats($chat_id, $user_id) {
     $msg .= "💾 <b>System:</b>\n";
     $msg .= "• Last Updated: " . ($stats['last_updated'] ?? 'N/A') . "\n";
     $msg .= "• PHP Version: " . phpversion() . "\n";
-    $msg .= "• Memory: " . format_bytes(memory_get_usage(true));
+    $msg .= "• Memory: " . format_bytes(memory_get_usage(true)) . "\n"; // Uses utils.php function
     
     sendMessage($chat_id, $msg, null, 'HTML');
 }
@@ -72,11 +73,8 @@ function count_active_users_today() {
     return $count;
 }
 
-function format_bytes($bytes) {
-    if ($bytes < 1024) return $bytes . ' B';
-    if ($bytes < 1048576) return round($bytes / 1024, 2) . ' KB';
-    return round($bytes / 1048576, 2) . ' MB';
-}
+// ===== REMOVED: function format_bytes($bytes) { ... } =====
+// Yeh function utils.php mein already hai, isliye yahan se hataya
 
 // ==============================
 // CSV MANAGEMENT
