@@ -1,27 +1,32 @@
 <?php
 // ==============================
 // ENTERTAINMENT TADKA BOT
-// MAIN ENTRY POINT
+// ==============================
+// MAIN ENTRY POINT - FIXED INCLUDE ORDER
 // ==============================
 
-// Load all required files
+// Load files in CORRECT ORDER to avoid redeclaration errors
 require_once 'config.php';
-require_once 'utils.php';
+require_once 'utils.php';           // Load utils FIRST (has format_time_eta)
 require_once 'database.php';
 require_once 'telegram.php';
 require_once 'channels.php';
 require_once 'users.php';
 require_once 'movies.php';
-require_once 'pagination.php';
-require_once 'typing_eta.php';
-require_once 'file_delete.php';
+require_once 'typing_eta.php';      // Now this uses format_time_eta from utils
+require_once 'file_delete.php';     // This also uses format_time_eta from utils
 require_once 'settings.php';
+require_once 'pagination.php';
 require_once 'bulk_send.php';
 require_once 'auto_scan.php';
 require_once 'callback_handler.php';
 require_once 'command_handler.php';
 require_once 'admin.php';
 require_once 'backup.php';
+
+// ... rest of your code ...
+
+
 
 // ==============================
 // FIX FOR REDIRECT LOOP ON RENDER
