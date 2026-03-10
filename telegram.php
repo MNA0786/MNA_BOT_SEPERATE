@@ -1,7 +1,10 @@
 <?php
 // ==============================
-// TELEGRAM API FUNCTIONS
+// TELEGRAM API FUNCTIONS - FIXED
 // ==============================
+
+// ===== NO OUTPUT BEFORE HEADERS! =====
+// Ensure there's NO echo, print, or whitespace before functions
 
 require_once 'config.php';
 require_once 'database.php';
