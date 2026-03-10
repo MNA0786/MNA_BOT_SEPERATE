@@ -1,20 +1,29 @@
 <?php
 // ==============================
-// ENTERTAINMENT TADKA BOT
-// ==============================
-// MAIN ENTRY POINT - FIXED INCLUDE ORDER
+// MAIN ENTRY POINT - FIXED
 // ==============================
 
-// Load files in CORRECT ORDER to avoid redeclaration errors
+// ===== FIX: Check if constant already exists before defining =====
+if (!defined('ON_RENDER')) {
+    // Detect if running on Render.com
+    if (isset($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'onrender.com') !== false) {
+        define('ON_RENDER', true);
+    } else {
+        define('ON_RENDER', false);
+    }
+}
+
+// ===== IMPORTANT: No output before headers! =====
+// Yeh saari files require karni hain BEFORE any output
 require_once 'config.php';
-require_once 'utils.php';           // Load utils FIRST (has format_time_eta)
+require_once 'utils.php';
 require_once 'database.php';
 require_once 'telegram.php';
 require_once 'channels.php';
 require_once 'users.php';
 require_once 'movies.php';
-require_once 'typing_eta.php';      // Now this uses format_time_eta from utils
-require_once 'file_delete.php';     // This also uses format_time_eta from utils
+require_once 'typing_eta.php';
+require_once 'file_delete.php';
 require_once 'settings.php';
 require_once 'pagination.php';
 require_once 'bulk_send.php';
@@ -24,25 +33,7 @@ require_once 'command_handler.php';
 require_once 'admin.php';
 require_once 'backup.php';
 
-// ... rest of your code ...
-
-
-
-// ==============================
-// FIX FOR REDIRECT LOOP ON RENDER
-// ==============================
-
-// Detect if running on Render.com
-if (isset($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'onrender.com') !== false) {
-    // On Render - don't redirect
-    define('ON_RENDER', true);
-} else {
-    define('ON_RENDER', false);
-}
-
-// ==============================
-// SECURITY HEADERS
-// ==============================
+// ===== Headers - ABHI SET KARO (after requires but before any output) =====
 header("X-Content-Type-Options: nosniff");
 header("X-Frame-Options: DENY");
 header("X-XSS-Protection: 1; mode=block");
