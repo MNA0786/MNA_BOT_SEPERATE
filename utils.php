@@ -1,11 +1,11 @@
 <?php
 // ==============================
-// UTILITY FUNCTIONS
+// UTILITY FUNCTIONS - FIXED
 // ==============================
 
 require_once 'config.php';
 
-// ✅ format_time_eta function
+// ===== FUNCTION 1: format_time_eta =====
 function format_time_eta($seconds) {
     if ($seconds < 60) {
         return $seconds . 's';
@@ -15,7 +15,7 @@ function format_time_eta($seconds) {
     return $mins . ':' . str_pad($secs, 2, '0', STR_PAD_LEFT);
 }
 
-// ✅ format_bytes function (SHOULD EXIST HERE ONLY)
+// ===== FUNCTION 2: format_bytes =====
 function format_bytes($bytes, $precision = 2) {
     $units = ['B', 'KB', 'MB', 'GB', 'TB'];
     $bytes = max($bytes, 0);
@@ -25,15 +25,10 @@ function format_bytes($bytes, $precision = 2) {
     return round($bytes, $precision) . ' ' . $units[$pow];
 }
 
-function format_bytes($bytes, $precision = 2) {
-    $units = ['B', 'KB', 'MB', 'GB', 'TB'];
-    $bytes = max($bytes, 0);
-    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
-    $pow = min($pow, count($units) - 1);
-    $bytes /= pow(1024, $pow);
-    return round($bytes, $precision) . ' ' . $units[$pow];
-}
+// ===== REMOVED: Duplicate format_bytes function was here! =====
+// Line 34 pe duplicate tha jo ab remove kar diya
 
+// ===== FUNCTION 3: detect_language =====
 function detect_language($text) {
     $hindi_keywords = ['फिल्म', 'मूवी', 'हिंदी', 'चाहिए'];
     $hindi_chars = preg_match('/[\x{0900}-\x{097F}]/u', $text);
@@ -51,6 +46,7 @@ function detect_language($text) {
     return 'english';
 }
 
+// ===== FUNCTION 4: is_valid_movie_query =====
 function is_valid_movie_query($text) {
     $text = strtolower(trim($text));
     
@@ -78,10 +74,12 @@ function is_valid_movie_query($text) {
     return true;
 }
 
+// ===== FUNCTION 5: sanitize_filename =====
 function sanitize_filename($filename) {
     return preg_replace('/[^a-zA-Z0-9\-\_\.]/', '', $filename);
 }
 
+// ===== FUNCTION 6: get_client_ip =====
 function get_client_ip() {
     $ip_keys = ['HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR'];
     
@@ -97,10 +95,12 @@ function get_client_ip() {
     return $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
 }
 
+// ===== FUNCTION 7: generate_random_string =====
 function generate_random_string($length = 8) {
     return substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, $length);
 }
 
+// ===== FUNCTION 8: array_group_by =====
 function array_group_by($array, $key) {
     $result = [];
     foreach ($array as $item) {
@@ -113,16 +113,19 @@ function array_group_by($array, $key) {
     return $result;
 }
 
+// ===== FUNCTION 9: percentage =====
 function percentage($part, $total) {
     if ($total == 0) return 0;
     return round(($part / $total) * 100, 2);
 }
 
+// ===== FUNCTION 10: safe_json_decode =====
 function safe_json_decode($json, $default = []) {
     $result = json_decode($json, true);
     return is_array($result) ? $result : $default;
 }
 
+// ===== FUNCTION 11: log_error =====
 function log_error($message, $context = []) {
     $log = '[' . date('Y-m-d H:i:s') . '] ERROR: ' . $message;
     if (!empty($context)) {
@@ -132,6 +135,7 @@ function log_error($message, $context = []) {
     file_put_contents(LOG_FILE, $log, FILE_APPEND);
 }
 
+// ===== FUNCTION 12: check_rate_limit =====
 function check_rate_limit($user_id, $action, $limit = 10, $period = 60) {
     $file = __DIR__ . '/data/ratelimit_' . $user_id . '_' . $action . '.txt';
     $now = time();
