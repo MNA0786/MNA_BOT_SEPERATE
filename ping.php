@@ -1,5 +1,6 @@
 <?php
-// Simple health check file
+// Simple health check - no redirects, no HTML
 http_response_code(200);
-echo "pong";
-?>
+header('Content-Type: text/plain');
+echo 'pong';
+exit;
