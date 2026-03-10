@@ -5,7 +5,7 @@
 
 require_once 'config.php';
 
-// ✅ This function should exist ONLY here
+// ✅ format_time_eta function
 function format_time_eta($seconds) {
     if ($seconds < 60) {
         return $seconds . 's';
@@ -13,6 +13,16 @@ function format_time_eta($seconds) {
     $mins = floor($seconds / 60);
     $secs = $seconds % 60;
     return $mins . ':' . str_pad($secs, 2, '0', STR_PAD_LEFT);
+}
+
+// ✅ format_bytes function (SHOULD EXIST HERE ONLY)
+function format_bytes($bytes, $precision = 2) {
+    $units = ['B', 'KB', 'MB', 'GB', 'TB'];
+    $bytes = max($bytes, 0);
+    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+    $pow = min($pow, count($units) - 1);
+    $bytes /= pow(1024, $pow);
+    return round($bytes, $precision) . ' ' . $units[$pow];
 }
 
 function format_bytes($bytes, $precision = 2) {
