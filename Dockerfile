@@ -34,9 +34,13 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . .
 
-# Create necessary directories
-RUN mkdir -p /var/www/html/data /var/www/html/backups
-RUN chmod -R 777 /var/www/html/data /var/www/html/backups /var/www/html/bot_activity.log
+# Create necessary directories AND files with proper permissions
+RUN mkdir -p /var/www/html/data /var/www/html/backups /var/www/html/logs /var/www/html/scans && \
+    touch /var/www/html/bot_activity.log && \
+    touch /var/www/html/logs/error.log && \
+    chmod -R 777 /var/www/html/data /var/www/html/backups /var/www/html/logs /var/www/html/scans && \
+    chmod 666 /var/www/html/bot_activity.log && \
+    chmod 666 /var/www/html/logs/error.log
 
 # Set environment variables (will be overridden by docker-compose or render)
 ENV BOT_TOKEN=""
@@ -46,13 +50,16 @@ ENV APP_ENV="production"
 # Configure Apache
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-# Setup cron for auto tasks
-RUN echo "0 3 * * * curl -s https://localhost/cron.php?task=backup > /dev/null 2>&1" | crontab -
-RUN echo "0 */6 * * * curl -s https://localhost/cron.php?task=scan > /dev/null 2>&1" | crontab -
-RUN echo "* * * * * curl -s https://localhost/cron.php?task=timers > /dev/null 2>&1" | crontab -
+# Copy custom Apache config if needed
+# COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
 
-# Copy cron script
-COPY cron.php /var/www/html/cron.php
+# Setup cron for auto tasks
+RUN echo "0 3 * * * curl -s http://localhost/cron.php?task=backup > /dev/null 2>&1" | crontab - && \
+    echo "0 */6 * * * curl -s http://localhost/cron.php?task=scan > /dev/null 2>&1" | crontab - && \
+    echo "* * * * * curl -s http://localhost/cron.php?task=timers > /dev/null 2>&1" | crontab -
+
+# Copy cron script (make sure it exists)
+# COPY cron.php /var/www/html/cron.php
 
 # Expose port
 EXPOSE 80
