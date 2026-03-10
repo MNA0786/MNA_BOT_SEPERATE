@@ -24,6 +24,18 @@ require_once 'admin.php';
 require_once 'backup.php';
 
 // ==============================
+// FIX FOR REDIRECT LOOP ON RENDER
+// ==============================
+
+// Detect if running on Render.com
+if (isset($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'onrender.com') !== false) {
+    // On Render - don't redirect
+    define('ON_RENDER', true);
+} else {
+    define('ON_RENDER', false);
+}
+
+// ==============================
 // SECURITY HEADERS
 // ==============================
 header("X-Content-Type-Options: nosniff");
